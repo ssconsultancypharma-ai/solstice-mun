@@ -5,6 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solstice MUN - Greek Gods Model United Nations</title>
     <style>
+        /* Pulse animation for CTA button */
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 10px 30px rgba(251,191,36,0.3), 0 0 0 rgba(251,191,36,0.2);
+        transform: translateY(0);
+    }
+    50% {
+        box-shadow: 0 15px 40px rgba(251,191,36,0.5), 0 0 20px rgba(251,191,36,0.4);
+        transform: translateY(-3px);
+    }
+    100% {
+        box-shadow: 0 10px 30px rgba(251,191,36,0.3), 0 0 0 rgba(251,191,36,0.2);
+        transform: translateY(0);
+    }
+}
+
+.cta-button.pulse {
+    animation: pulseGlow 2s infinite;
+}
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --dark-teal: #0d4d4d;
@@ -220,11 +240,11 @@
     </nav>
 
     <!-- Hero -->
-   <section id="home" class="hero">
+  <section id="home" class="hero">
     <div class="hero-content">
         <div class="subtitle">⚡ The Pantheon Convenes ⚡</div>
         <h1>SOLSTICE MUN</h1>
-        <p style="font-size: 1.5em; color: var(--golden);">📅 November 17–18, 2025</p>
+        <p style="font-size: 1.5em; color: var(--golden);">📅 November 14–15, 2025</p>
         <p>Where Divine Wisdom Meets Modern Diplomacy</p>
         <a href="#about" class="cta-button">Ascend to Olympus</a>
 
@@ -232,6 +252,7 @@
         <div id="countdown" style="margin-top: 30px; font-size: 1.5em; color: var(--beige); font-weight: 600;"></div>
     </div>
 </section>
+
 
 
     <!-- About -->
@@ -451,7 +472,34 @@ const countdownInterval = setInterval(() => {
                 submitBtn.textContent = '⚡ Submit Registration ⚡';
             }
         });
+        // Add pulsing glow to the main CTA button
+const ctaButton = document.querySelector('.cta-button');
+ctaButton.classList.add('pulse');
+        // Countdown Timer
+const countdownElement = document.getElementById('countdown');
+const eventDate = new Date("November 14, 2025 09:00:00").getTime(); // Updated date
+
+const countdownInterval = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = eventDate - now;
+
+    if (distance < 0) {
+        clearInterval(countdownInterval);
+        countdownElement.innerHTML = "🏛 The MUN has begun! 🏛";
+        return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdownElement.innerHTML = `⏳ ${days}d ${hours}h ${minutes}m ${seconds}s until Solstice MUN!`;
+}, 1000);
+
+
     </script>
 </body>
 </html>
+
 
