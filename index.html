@@ -220,14 +220,19 @@
     </nav>
 
     <!-- Hero -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="subtitle">⚡ The Pantheon Convenes ⚡</div>
-            <h1>SOLSTICE MUN</h1>
-            <p>Where Divine Wisdom Meets Modern Diplomacy</p>
-            <a href="#about" class="cta-button">Ascend to Olympus</a>
-        </div>
-    </section>
+   <section id="home" class="hero">
+    <div class="hero-content">
+        <div class="subtitle">⚡ The Pantheon Convenes ⚡</div>
+        <h1>SOLSTICE MUN</h1>
+        <p style="font-size: 1.5em; color: var(--golden);">📅 November 17–18, 2025</p>
+        <p>Where Divine Wisdom Meets Modern Diplomacy</p>
+        <a href="#about" class="cta-button">Ascend to Olympus</a>
+
+        <!-- Countdown Timer -->
+        <div id="countdown" style="margin-top: 30px; font-size: 1.5em; color: var(--beige); font-weight: 600;"></div>
+    </div>
+</section>
+
 
     <!-- About -->
     <section id="about" class="about">
@@ -372,6 +377,28 @@
 
     <script>
         // Smooth scrolling
+        // Countdown Timer
+const countdownElement = document.getElementById('countdown');
+const eventDate = new Date("November 17, 2025 09:00:00").getTime();
+
+const countdownInterval = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = eventDate - now;
+
+    if (distance < 0) {
+        clearInterval(countdownInterval);
+        countdownElement.innerHTML = "🏛 The MUN has begun! 🏛";
+        return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdownElement.innerHTML = `⏳ ${days}d ${hours}h ${minutes}m ${seconds}s until Solstice MUN!`;
+}, 1000);
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -427,3 +454,4 @@
     </script>
 </body>
 </html>
+
