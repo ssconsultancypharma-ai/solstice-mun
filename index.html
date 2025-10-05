@@ -5,6 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solstice MUN - Greek Gods Model United Nations</title>
     <style>
+        /* Navbar container adjustments */
+nav .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* Hamburger */
+.hamburger {
+    display: none;
+    font-size: 2em;
+    color: var(--beige);
+    cursor: pointer;
+}
+
+/* Hide nav-links by default on mobile */
+#nav-links {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    #nav-links {
+        position: fixed;
+        top: 60px; /* below nav bar */
+        left: -100%;
+        flex-direction: column;
+        gap: 20px;
+        background: rgba(13, 77, 77, 0.95);
+        width: 100%;
+        height: calc(100vh - 60px);
+        padding-top: 30px;
+        text-align: center;
+        transition: left 0.3s ease;
+        z-index: 999;
+    }
+
+    #nav-links.show {
+        left: 0;
+    }
+}
+
         /* Pulse animation for CTA button */
 @keyframes pulseGlow {
     0% {
@@ -227,16 +275,17 @@
 <body>
     <!-- Navigation -->
     <nav>
-        <ul>
+    <div class="nav-container">
+        <div class="logo">SOLSTICE MUN</div>
+        <div class="hamburger" id="hamburger">&#9776;</div>
+        <ul id="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#committees">Olympian Councils</a></li>
             <li><a href="#register">Register</a></li>
-            <li><a href="#sponsors">Sponsors</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
+    </div>
     </nav>
 
     <!-- Hero -->
@@ -496,10 +545,18 @@ const countdownInterval = setInterval(() => {
 
     countdownElement.innerHTML = `⏳ ${days}d ${hours}h ${minutes}m ${seconds}s until Solstice MUN!`;
 }, 1000);
+        const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+
+hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+});
+
 
 
     </script>
 </body>
 </html>
+
 
 
